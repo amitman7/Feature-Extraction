@@ -232,9 +232,9 @@ def main():
     df = feature_to_dataframe(list_of_uniprots)
     structure_list = import_pdb_to_ifeature(list_of_uniprots)
     
-    structure_list[0].import_parameters(r'C:\Users\97252\Desktop\עמית\אוניברסיטה\שנה ג\התמחות\structure_extarction\Structure_parameters_setting.json')
+    structure_list[0].import_parameters(#write your path to parameters file)
     
-    """AAC_type1_add(structure_list,df)  
+    AAC_type1_add(structure_list,df)  
     AAC_type2_add(structure_list,df)
     GAAC_type1_add(structure_list,df)
     GAAC_type2_add(structure_list,df)
@@ -246,26 +246,10 @@ def main():
     HSE_CB_add(structure_list,df)
     AC_type1_add(structure_list,df)
     AC_type2_add(structure_list,df)
-    Network_based_index_add(structure_list,df)"""
+    Network_based_index_add(structure_list,df)
 
-    AAC_type2_add(structure_list,df)
-    GAAC_type1_add(structure_list,df)
-    GAAC_type2_add(structure_list,df)       
-    SS3_type2_add(structure_list,df)
-
-    structure_list[0].display_feature_types()
-    print(df['SS3_type2'][1])               
-
-
-
-
-  
-
-    #structure.to_csv("structure_AAC.csv", "index=TRUE", header=True)
-
-
+           
    
-
     return None
 
 
