@@ -177,17 +177,6 @@ def HSE_CB_add(structure_list,df):
     df['HSE_CB'] = list_toAdd  
 
 
-# Residue depth no "mems" in windows cans use it
-"""def Residue_depth_add(structure_list,df):
-    df['Residue depth'] = None
-    list_toAdd = []
-    for i in range(len(structure_list)):
-        structure_list[i].get_descriptor("Residue depth")
-        res = structure_list[i].encodings
-        list_toAdd.append(res)
-    df['Residue depth'] = list_toAdd  """
-
-
 # Atom content type 1
 def AC_type1_add(structure_list,df):
     df['AC_type1'] = None
