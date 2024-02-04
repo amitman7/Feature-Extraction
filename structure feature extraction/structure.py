@@ -76,6 +76,7 @@ def import_pdb_to_ifeature(list_of_uniprots):
     return structure_list
 
 
+
 #Amino acids content type 1
 def AAC_type1_add(structure_list,df):
     df['AAC_type1'] = None
