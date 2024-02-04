@@ -21,7 +21,7 @@ def download_alphafold_pdb(uniprot_id):
     api_key = "AIzaSyCeurAJz7ZGjPQUtEaerUkBZ3TaBkXrY94"
 
     # Directory where the PDB files will be saved
-    save_directory = r"C:\Users\97252\Desktop\עמית\אוניברסיטה\שנה ג\התמחות\structure_extarction\pdb"
+    save_directory = #write the path where the PDB files will be saved
     if not os.path.exists(save_directory):
         os.makedirs(save_directory)
 
@@ -71,7 +71,7 @@ def feature_to_dataframe(uniprots_id_list):
 def import_pdb_to_ifeature(list_of_uniprots):
     structure_list = []
     for pdb_id  in list_of_uniprots:
-        structure = iFeatureOmegaCLI.iStructure(rf"C:\Users\97252\Desktop\עמית\אוניברסיטה\שנה ג\התמחות\structure_extarction\pdb\{pdb_id}.pdb")
+        structure = iFeatureOmegaCLI.iStructure(#write your path to the pdb files in your computer) 
         structure_list.append(structure)
     return structure_list
 
@@ -210,11 +210,11 @@ def Network_based_index_add(structure_list,df):
 
 def main():
 
-    """list_of_uniprots = ["Q92800", "O75530", "Q6ZN18", "Q09028"]
-    for uniprot in list_of_uniprots:
-        download_alphafold_pdb(uniprot)"""
-    
     list_of_uniprots = ["Q92800", "O75530", "Q6ZN18", "Q09028"]
+    for uniprot in list_of_uniprots:
+        download_alphafold_pdb(uniprot)
+    
+  
     df = feature_to_dataframe(list_of_uniprots)
     structure_list = import_pdb_to_ifeature(list_of_uniprots)
     
