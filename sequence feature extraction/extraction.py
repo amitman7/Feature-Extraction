@@ -86,7 +86,7 @@ def feature_to_dataframe(sequences,sequences_num):
 
 
 def main():
-    file_path = r'C:\Users\97252\Desktop\עמית\אוניברסיטה\שנה ג\התמחות\חלבונים\uniprotkb_accession_A0A0C5B5G6_OR_access_2024_01_10.fasta'
+    file_path = # write your fasta file path
     fasta_data = read_fasta(file_path)
     sequences = extract_sequences(fasta_data)
     sequences_dict= dict(sequences)
@@ -96,7 +96,7 @@ def main():
 
 
     ### protlearn ###
-    """length_feature_add(my_dataframe,sequences_list)
+    length_feature_add(my_dataframe,sequences_list)
     aac_feature_add(my_dataframe,sequences_num)
     aaindex1_feature_add(my_dataframe,sequences_num)
     ngram_feature_add(my_dataframe,sequences_num)
@@ -147,30 +147,29 @@ def main():
     isoelectric_point_feature_add(my_dataframe,sequences_num,peptide_list)
     mass_shift_point_feature_add(my_dataframe,sequences_num,peptide_list)
     molecular_weight_feature_add(my_dataframe,sequences_num,peptide_list)
-    mz_feature_add(my_dataframe,sequences_num,peptide_list)"""
+    mz_feature_add(my_dataframe,sequences_num,peptide_list)
 
 
     ### FEGS  ###
     fegs_path = r'C:\Users\97252\Desktop\עמית\אוניברסיטה\שנה ג\התמחות\FEGS'  
     FEGS_add(my_dataframe,sequences_num,fasta_data,fegs_path)
-    
+
+
+ 
     #dictionary with info for each feature
     feature_info = {}
-    #feature_info_add(my_dataframe,feature_info)
-
-
-
-
-    #print(feature_info['moran'],"\n") 
-    print(my_dataframe['FEGS'][8],)
+    feature_info_add(my_dataframe,feature_info)
 
 
     return None
    
 
-   
+""" 
+Here is the implementation for the functions above, organized in the order of APIs.
+"""
 
-### protlearn ###
+
+### protlearn  ###
 
 def length_feature_add(my_dataframe,sequences_list):
     my_dataframe['length'] = length(sequences_list)
