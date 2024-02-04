@@ -176,7 +176,6 @@ def HSE_CB_add(structure_list,df):
         list_toAdd.append(res)
     df['HSE_CB'] = list_toAdd  
 
-
 # Atom content type 1
 def AC_type1_add(structure_list,df):
     df['AC_type1'] = None
@@ -187,7 +186,6 @@ def AC_type1_add(structure_list,df):
         list_toAdd.append(res)
     df['AC_type1'] = list_toAdd  
 
-
 # Atom content type 2
 def AC_type2_add(structure_list,df):
     df['AC_type2'] = None
@@ -197,7 +195,6 @@ def AC_type2_add(structure_list,df):
         res = structure_list[i].encodings
         list_toAdd.append(res)
     df['AC_type2'] = list_toAdd  
-
 
 # Network-based index
 def Network_based_index_add(structure_list,df):
