@@ -71,7 +71,7 @@ def feature_to_dataframe(uniprots_id_list):
 def import_pdb_to_ifeature(list_of_uniprots):
     structure_list = []
     for pdb_id  in list_of_uniprots:
-        structure = iFeatureOmegaCLI.iStructure(#write your path to the pdb files in your computer) 
+        structure = iFeatureOmegaCLI.iStructure(# write your path to the pdb files in your computer) 
         structure_list.append(structure)
     return structure_list
 
