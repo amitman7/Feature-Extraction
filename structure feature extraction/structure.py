@@ -5,6 +5,8 @@ import os
 import iFeatureOmegaCLI
 import os
 import requests
+from sklearn.pipeline import Pipeline
+
 
 def download_alphafold_pdb(uniprot_id):
     """
@@ -21,7 +23,7 @@ def download_alphafold_pdb(uniprot_id):
     api_key = "AIzaSyCeurAJz7ZGjPQUtEaerUkBZ3TaBkXrY94"
 
     # Directory where the PDB files will be saved
-    save_directory = #write the path where the PDB files will be saved
+    save_directory = r"C:\Users\97252\Desktop\עמית\אוניברסיטה\שנה ג\התמחות\structure_extarction\pdb"
     if not os.path.exists(save_directory):
         os.makedirs(save_directory)
 
@@ -61,191 +63,140 @@ def download_alphafold_pdb(uniprot_id):
         file.write(pdb_response.text)
     print(f"PDB file for {uniprot_id} saved to {file_path}")
 
-def feature_to_dataframe(uniprots_id_list):
-    data = []
-    for i in range(len(uniprots_id_list)):
-        data.append(uniprots_id_list[i])
-    df = pd.DataFrame(data, columns=['uniprots_id'])
-    return df
 
 def import_pdb_to_ifeature(list_of_uniprots):
     structure_list = []
     for pdb_id  in list_of_uniprots:
-        structure = iFeatureOmegaCLI.iStructure(# write your path to the pdb files in your computer) 
+        structure = iFeatureOmegaCLI.iStructure(rf"C:\Users\97252\Desktop\עמית\אוניברסיטה\שנה ג\התמחות\structure_extarction\pdb\{pdb_id}.pdb")
         structure_list.append(structure)
+    for i in range (len(structure_list)):
+        structure_list[i].import_parameters(r'C:\Users\97252\Desktop\עמית\אוניברסיטה\שנה ג\התמחות\structure_extarction\Structure_parameters_setting.json') 
+
     return structure_list
 
 
+def protein_features_to_vector(protein):
+    vector = []
 
-#Amino acids content type 1
-def AAC_type1_add(structure_list,df):
-    df['AAC_type1'] = None
-    list_toAdd = []
-    for i in range(len(structure_list)):
-        structure_list[i].get_descriptor("AAC_type1")
-        res = structure_list[i].encodings
-        list_toAdd.append(res)
-    df['AAC_type1'] = list_toAdd 
+    protein.get_descriptor("AAC_type1")
+    res = protein.encodings
+    len_seq, len_features = res.shape
+    for i in range(len_features):
+        x= res.iloc[:, i].mean()
+        vector.append(x)  
 
-#Amino acids content type 
-def AAC_type2_add(structure_list,df):
-    df['AAC_type2'] = None
-    list_toAdd = []
-    for i in range(len(structure_list)):
-        structure_list[i].get_descriptor("AAC_type2")
-        res = structure_list[i].encodings
-        list_toAdd.append(res)
-    df['AAC_type2'] = list_toAdd
+    protein.get_descriptor("AAC_type2")
+    res = protein.encodings
+    len_seq, len_features = res.shape
+    for i in range(len_features):
+        x= res.iloc[:, i].mean()
+        vector.append(x)  
 
-#Grouped amino acids content type 1
-def GAAC_type1_add(structure_list,df):
-    df['GAAC_type1'] = None
-    list_toAdd = []
-    for i in range(len(structure_list)):
-        structure_list[i].get_descriptor("GAAC_type1")
-        res = structure_list[i].encodings
-        list_toAdd.append(res)
-    df['GAAC_type1'] = list_toAdd     
-    
-#Grouped amino acids content type 2
-def GAAC_type2_add(structure_list,df):
-    df['GAAC_type2'] = None
-    list_toAdd = []
-    for i in range(len(structure_list)):
-        structure_list[i].get_descriptor("GAAC_type2")
-        res = structure_list[i].encodings
-        list_toAdd.append(res)
-    df['GAAC_type2'] = list_toAdd     
-    
-#Secondary structure elements (3) type 1
-def SS3_type1_add(structure_list,df):
-    df['GAAC_type2'] = None
-    list_toAdd = []
-    for i in range(len(structure_list)):
-        structure_list[i].get_descriptor("SS3_type1")
-        res = structure_list[i].encodings
-        list_toAdd.append(res)
-    df['SS3_type1'] = list_toAdd  
+    protein.get_descriptor("GAAC_type1")
+    res = protein.encodings
+    len_seq, len_features = res.shape
+    for i in range(len_features):
+        x= res.iloc[:, i].mean()
+        vector.append(x)  
 
-#Secondary structure elements (3) type 2
-def SS3_type2_add(structure_list,df):
-    df['SS3_type2'] = None
-    list_toAdd = []
-    for i in range(len(structure_list)):
-        structure_list[i].get_descriptor("SS3_type2")
-        res = structure_list[i].encodings
-        list_toAdd.append(res)
-    df['SS3_type2'] = list_toAdd  
+    protein.get_descriptor("GAAC_type2")
+    res = protein.encodings
+    len_seq, len_features = res.shape
+    for i in range(len_features):
+        x= res.iloc[:, i].mean()
+        vector.append(x)  
 
-# Secondary structure elements (8) type 1
-def SS8_type1_add(structure_list,df):
-    df['SS8_type1'] = None
-    list_toAdd = []
-    for i in range(len(structure_list)):
-        structure_list[i].get_descriptor("SS8_type1")
-        res = structure_list[i].encodings
-        list_toAdd.append(res)
-    df['SS8_type1'] = list_toAdd  
+    protein.get_descriptor("SS3_type1")
+    res = protein.encodings
+    len_seq, len_features = res.shape
+    for i in range(len_features):
+        x= res.iloc[:, i].mean()
+        vector.append(x)  
 
-# Secondary structure elements (8) type 2
-def SS8_type2_add(structure_list,df):
-    df['SS8_type2'] = None
-    list_toAdd = []
-    for i in range(len(structure_list)):
-        structure_list[i].get_descriptor("SS8_type2")
-        res = structure_list[i].encodings
-        list_toAdd.append(res)
-    df['SS8_type2'] = list_toAdd  
+    protein.get_descriptor("SS3_type2")
+    res = protein.encodings
+    len_seq, len_features = res.shape
+    for i in range(len_features):
+        x= res.iloc[:, i].mean()
+        vector.append(x)  
 
-# Half sphere exposure alpha
-def HSE_CA_add(structure_list,df):
-    df['HSE_CA'] = None
-    list_toAdd = []
-    for i in range(len(structure_list)):
-        structure_list[i].get_descriptor("HSE_CA")
-        res = structure_list[i].encodings
-        list_toAdd.append(res)
-    df['HSE_CA'] = list_toAdd  
+    protein.get_descriptor("SS8_type1")
+    res = protein.encodings
+    len_seq, len_features = res.shape
+    for i in range(len_features):
+        x= res.iloc[:, i].mean()
+        vector.append(x)  
 
-# Half sphere exposure β
-def HSE_CB_add(structure_list,df):
-    df['HSE_CB'] = None
-    list_toAdd = []
-    for i in range(len(structure_list)):
-        structure_list[i].get_descriptor("HSE_CB")
-        res = structure_list[i].encodings
-        list_toAdd.append(res)
-    df['HSE_CB'] = list_toAdd  
+    protein.get_descriptor("SS8_type2")
+    res = protein.encodings
+    len_seq, len_features = res.shape
+    for i in range(len_features):
+        x= res.iloc[:, i].mean()
+        vector.append(x)  
 
-# Atom content type 1
-def AC_type1_add(structure_list,df):
-    df['AC_type1'] = None
-    list_toAdd = []
-    for i in range(len(structure_list)):
-        structure_list[i].get_descriptor("AC_type1")
-        res = structure_list[i].encodings
-        list_toAdd.append(res)
-    df['AC_type1'] = list_toAdd  
+    protein.get_descriptor("HSE_CA")
+    res = protein.encodings
+    len_seq, len_features = res.shape
+    for i in range(len_features):
+        x= res.iloc[:, i].mean()
+        vector.append(x)  
 
-# Atom content type 2
-def AC_type2_add(structure_list,df):
-    df['AC_type2'] = None
-    list_toAdd = []
-    for i in range(len(structure_list)):
-        structure_list[i].get_descriptor("AC_type2")
-        res = structure_list[i].encodings
-        list_toAdd.append(res)
-    df['AC_type2'] = list_toAdd  
+    protein.get_descriptor("HSE_CB")
+    res = protein.encodings
+    len_seq, len_features = res.shape
+    for i in range(len_features):
+        x= res.iloc[:, i].mean()
+        vector.append(x)  
 
-# Network-based index
-def Network_based_index_add(structure_list,df):
-    df['Network-based index'] = None
-    list_toAdd = []
-    for i in range(len(structure_list)):
-        structure_list[i].get_descriptor("Network-based index")
-        res = structure_list[i].encodings
-        list_toAdd.append(res)
-    df['Network-based index'] = list_toAdd  
+    protein.get_descriptor("AC_type1")
+    res = protein.encodings
+    len_seq, len_features = res.shape
+    for i in range(len_features):
+        x= res.iloc[:, i].mean()
+        vector.append(x)  
 
+    protein.get_descriptor("AC_type2")
+    res = protein.encodings
+    len_seq, len_features = res.shape
+    for i in range(len_features):
+        x= res.iloc[:, i].mean()
+        vector.append(x)  
+
+    protein.get_descriptor("Network-based index")
+    res = protein.encodings
+    len_seq, len_features = res.shape
+    for i in range(len_features):
+        x= res.iloc[:, i].mean()
+        vector.append(x)  
+
+
+
+    return vector   
+        
 
 
 def main():
 
-    list_of_uniprots = ["Q92800", "O75530", "Q6ZN18", "Q09028"]
+    """list_of_uniprots = ["Q92800", "O75530", "Q6ZN18", "Q09028"]
     for uniprot in list_of_uniprots:
-        download_alphafold_pdb(uniprot)
+        download_alphafold_pdb(uniprot)"""
     
-  
-    df = feature_to_dataframe(list_of_uniprots)
+    list_of_uniprots = ["Q92800", "O75530", "Q6ZN18", "Q09028"]
     structure_list = import_pdb_to_ifeature(list_of_uniprots)
     
-    structure_list[0].import_parameters(#write your path to parameters file)
+
+
+    vectors_list = []
+    for i in range (len(structure_list)):
+       vectors_list.append(protein_features_to_vector(structure_list[i]))
+        
     
-    AAC_type1_add(structure_list,df)  
-    AAC_type2_add(structure_list,df)
-    GAAC_type1_add(structure_list,df)
-    GAAC_type2_add(structure_list,df)
-    SS3_type1_add(structure_list,df)
-    SS3_type2_add(structure_list,df)
-    SS8_type1_add(structure_list,df)
-    SS8_type2_add(structure_list,df)
-    HSE_CA_add(structure_list,df)
-    HSE_CB_add(structure_list,df)
-    AC_type1_add(structure_list,df)
-    AC_type2_add(structure_list,df)
-    Network_based_index_add(structure_list,df)
 
-           
+
+    #structure_list[0].display_feature_types()
+    #structure.to_csv("structure_AAC.csv", "index=TRUE", header=True)
+
+
    
+
     return None
-
-
-
-
-
-
-
-
-
-if __name__ == "__main__":
-    main()
