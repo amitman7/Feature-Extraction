@@ -10,5 +10,5 @@ Furthermore, the data frame provides detailed expansions for each feature, eluci
 
 # Structures feature extraction
 
-I've took several UniProt IDs to extract their corresponding PDB files from the AlphaFold database, followed by the creation of a comprehensive data frame using the Pandas library. Utilizing the iFeature Omega API, I fetched 14 structural features, each represented as a column in this comprehensive data frame. 
+I've took several UniProt IDs to extract their corresponding PDB files from the AlphaFold database. Subsequently, I generated a one-dimensional vector for each protein. Using the iFeature Omega API, I obtained 13 structural features and integrated them into the vector. Each resulting vector comprises 722 values.
 
