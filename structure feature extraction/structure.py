@@ -191,20 +191,8 @@ def main():
        vectors_list.append(protein_features_to_vector(structure_list[i]))
         
     
-    #print(len(vectors_list),"\n", len(vectors_list[0]),"\n", len(vectors_list[1]),"\n", len(vectors_list[2]),"\n", len(vectors_list[3]))
-
-
-    #structure_list[0].display_feature_types()
-    #structure.to_csv("structure_AAC.csv", "index=TRUE", header=True)
-
-    #now remains to create dataframe from the vector and uniprot id. then try to understand how pipleline works and how to use it
-
-   
 
     return None
-
-
-
 
 
 
