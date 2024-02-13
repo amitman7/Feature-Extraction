@@ -8,6 +8,8 @@ The initial phase involved downloading a FASTA file containing sequences of 100 
 
 Furthermore, the data frame provides detailed expansions for each feature, elucidating the underlying rules and functionalities associated with them.
 
+Later, I utilized the iFeature Omega API to extract sequence features, generating a one-dimensional vector for each protein. Each vector comprises over 20,000 values.
+
 # Structures feature extraction
 
 I've took several UniProt IDs to extract their corresponding PDB files from the AlphaFold database. Subsequently, I generated a one-dimensional vector for each protein. Using the iFeature Omega API, I obtained 13 structural features and integrated them into the vector. Each resulting vector comprises 722 values.
