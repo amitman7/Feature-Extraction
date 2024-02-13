@@ -173,7 +173,14 @@ def protein_features_to_vector(protein):
 
     return vector   
         
-
+def vector_to_dataframe(vectors_list, list_of_uniprots):
+    data = {
+    'uniprotId': list_of_uniprots,
+    'vector': vectors_list
+}
+    df = pd.DataFrame(data)
+ 
+    return df
 
 def main():
 
@@ -189,11 +196,16 @@ def main():
     vectors_list = []
     for i in range (len(structure_list)):
        vectors_list.append(protein_features_to_vector(structure_list[i]))
-        
+       
+    df = vector_to_dataframe(vectors_list, list_of_uniprots)
     
+    df.to_csv('structure_features.csv', index=False)
+    
+   
+
+   
 
     return None
-
 
 
 
@@ -203,6 +215,3 @@ if __name__ == "__main__":
     main()
 
 
-
-# first lets make each feature a vector of size length * num of features without len
-   #then lets take all the vectors of all feature and combuend tehm
