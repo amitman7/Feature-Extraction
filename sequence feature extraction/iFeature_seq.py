@@ -660,11 +660,7 @@ def protein_features_to_vector(protein):
 
 
     return vector
-
-
-
-        
-        
+             
 
 
 def main():
@@ -682,15 +678,15 @@ def main():
     for i in range (sequences_num):
        x = protein_features_to_vector(proteins[i])
        x= np.array(x)
-       vectors_list.append(np.concatenate(x))
+       vectors_list.append(np.concatenate(x)) 
        
     
     df = vector_to_dataframe(vectors_list, uniprotID_list)
     
 
-    df.to_csv('seq_features.csv', index=False) there are to much values - 23378 to each vector the csv cant hold it
+    df.to_csv('seq_features.csv', index=False)  
     
-  
+  # each protein as a vector conatins 23378 values
 
 
 
