@@ -1,4 +1,4 @@
-# Feature-extraction
+# Feature-Extraction
 Python feature extraction project from protein sequences and protein structures.
 
 During my internship, I undertook a project focused on protein sequence feature extraction, with the aim of subsequently applying these features in machine and deep learning algorithms to address protein-protein interactions. Throughout the project, I leveraged various APIs, including ProtLearn, Propy, Peptides, FEGS and iFeature.
