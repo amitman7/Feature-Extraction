@@ -75,8 +75,8 @@ def vector_to_dataframe(uniprotID_list,vectors_list):
 
 def main():
 
-    fegs_path = r'C:\Users\97252\Desktop\עמית\אוניברסיטה\שנה ג\התמחות\FEGS' 
-    fasta_data = read_fasta(r'C:\Users\97252\Desktop\עמית\אוניברסיטה\שנה ג\התמחות\final\1-48\idmapping_2024_02_18 (2).fasta') 
+    fegs_path = 'write your path for fegs'
+    fasta_data = read_fasta('write your path to your fatas file') 
     vectors_list= FEGS_add(fasta_data,fegs_path)
 
     sequences = extract_sequences(fasta_data)
