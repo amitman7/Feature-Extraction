@@ -75,7 +75,7 @@ def vector_to_dataframe(uniprotID_list,vectors_list):
 def main():
 
     fegs_path = 'write your path for fegs'
-    fasta_data = read_fasta('write your path to your fatas file') 
+    fasta_data = read_fasta('write your path to your fasta file') 
     vectors_list= FEGS_add(fasta_data,fegs_path)
 
     sequences = extract_sequences(fasta_data)
@@ -91,7 +91,6 @@ def main():
     df.to_csv('fegs_features.csv', index=False)
 
 
-    #print(df)
 
     return None
 
