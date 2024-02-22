@@ -340,7 +340,7 @@ def peptides_to_vector(peptide):
 
 
 def main():
-    file_path = r'C:\Users\97252\Desktop\עמית\אוניברסיטה\שנה ג\התמחות\feature_extraction\all_without_C5J4T0.fasta'
+    file_path = r'your path for the fasta files'
     fasta_data = read_fasta(file_path)
     sequences_and_id = extract_sequences(fasta_data)
     sequences_num = len(sequences_and_id) 
